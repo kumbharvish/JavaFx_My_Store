@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopbilling.fx.controllers.LoginController">
+   <children>
+      <Pane layoutX="18.0" layoutY="40.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="330.0" prefWidth="274.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <JFXTextField fx:id="txtUserName" layoutX="26.0" layoutY="26.0" prefHeight="36.0" prefWidth="223.0" promptText="UserName" unFocusColor="BLACK">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="txtPassword" layoutX="26.0" layoutY="110.0" prefHeight="36.0" prefWidth="223.0" promptText="Password" unFocusColor="BLACK">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXButton fx:id="btnLogin" buttonType="RAISED" layoutX="39.0" layoutY="207.0" onAction="#doLogin" prefHeight="36.0" prefWidth="65.0" ripplerFill="WHITE" style="-fx-background-color: #ea995f;" text="Login" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnClose" buttonType="RAISED" layoutX="159.0" layoutY="207.0" onAction="#doClose" prefHeight="36.0" prefWidth="65.0" ripplerFill="WHITE" style="-fx-background-color: #ea995f;" text="Close" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="errorMessage" layoutX="25.0" layoutY="275.0" prefHeight="19.0" prefWidth="223.0" textFill="#fc0a0a">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <InnerShadow blurType="GAUSSIAN" />
+         </effect>
+      </Pane>
+   </children>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+</Pane>
