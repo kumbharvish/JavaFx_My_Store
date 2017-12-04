@@ -51,6 +51,7 @@ public class MyStoreFxSplash extends Application {
 
     @Override
     public void init() {
+    	PropertyConfigurator.configure(MyStoreFxSplash.class.getClassLoader().getResourceAsStream("resources/log4j.properties"));
         ImageView splash = new ImageView(new Image(MyStoreFxSplash.class.getResourceAsStream("/images/MyStoreSplash.png")));
         loadProgress = new ProgressBar();
         loadProgress.setPrefWidth(SPLASH_WIDTH);
@@ -74,7 +75,6 @@ public class MyStoreFxSplash extends Application {
 
     @Override
     public void start(final Stage initStage) throws Exception {
-    	PropertyConfigurator.configure(MyStoreFxSplash.class.getClassLoader().getResourceAsStream("resources/log4j.properties"));
         final Task<ObservableList<String>> tasks = new Task<ObservableList<String>>() {
             @Override
             protected ObservableList<String> call() throws InterruptedException {
