@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.shopbilling.dto.UserDetails;
 import com.shopbilling.fx.main.Global;
 import com.shopbilling.utils.TabContent;
 import com.shopbilling.utils.Utility;
@@ -42,11 +43,13 @@ import javafx.stage.WindowEvent;
 
 /**
  *
- * @author Dinesh
+ * @author Vishal
  */
 public class HomeController {
 
     public Stage MainWindow = null;
+    
+    public UserDetails userDetails = null;
 
     private final static Logger logger
             = Logger.getLogger(HomeController.class.getName());
@@ -117,29 +120,6 @@ public class HomeController {
                 });
 
         toolbar.managedProperty().bind(toolbar.visibleProperty());
-
-        final Label[] labels = new Label[]{
-            lblCreateInvoice, lblSearchInvoice, lblReceivePayment, lblSearchPayment,
-            lblCustomers, lblCustomerAccount, lblItems, 
-            lblMeasurementUnits, lblBackup
-        };
-
-        for (Label label : labels) {
-            label.disableProperty().bind(Global.activeYearProperty().isNull());
-        }
-        
-        final MenuItem[] menuItems = new MenuItem[] {
-            firmDetailsMenuItem, measurementUnitsMenuItem,
-            itemsMenuItem, createInvoiceMenuItem, searchInvoiceMenuItem,
-            paymentReceivedMenuItem, paymentSearchMenuItem,
-            customersMenuItem, customerAccountMenuItem, backupDatabaseMenuItem,
-            closeFinancialYearMenuItem, compactDatabaseMenuItem
-        };
-        
-        for(MenuItem menuItem : menuItems) {
-            menuItem.disableProperty().bind(Global.activeYearProperty().isNull());
-        }
-        
     }
 
     @FXML
@@ -151,7 +131,7 @@ public class HomeController {
 
     @FXML
     private void onFirmDetailsCommand(ActionEvent event) {
-        addTab("FirmDetails", "Firm Details");
+        addTab("FirmDetails", "Store Details");
     }
 
     @FXML
@@ -260,7 +240,7 @@ public class HomeController {
             }
         }
 
-        final String viewPath = "/fxbilling/view/" + fxmlFileName + ".fxml";
+        final String viewPath = "/com/shopbilling/fx/views/" + fxmlFileName + ".fxml";
 
         FXMLLoader loader = new FXMLLoader();
         URL resource = this.getClass().getResource(viewPath);

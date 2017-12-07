@@ -19,7 +19,7 @@
          <children>
             <MenuBar>
               <menus>
-                <Menu fx:id="fileMenu" mnemonicParsing="true" text="_File">
+                <Menu fx:id="homeMenu" mnemonicParsing="true" text="_Home">
                      <items>
                          <MenuItem fx:id="createFinancialYearMenuItem" onAction="#onCreateFinancialYearAction"
                            text="_Create Financial Year..."  mnemonicParsing="true"  accelerator="SHORTCUT+SHIFT+C"  /> 
@@ -32,7 +32,7 @@
                            text="Delete Financial Year..."  /> 
                          <SeparatorMenuItem />
                         <MenuItem fx:id="firmDetailsMenuItem"  mnemonicParsing="true" 
-                                  onAction="#onFirmDetailsCommand" text="Fir_m Details" />
+                                  onAction="#onFirmDetailsCommand" text="_Store Details" />
                         <MenuItem fx:id="measurementUnitsMenuItem" text="_Measurement Units"
                                   mnemonicParsing="true" onAction="#onMeasurementUnitsCommmand" accelerator="SHORTCUT+SHIFT+M" />
                         <MenuItem fx:id="itemsMenuItem" text="_Items" mnemonicParsing="true" 

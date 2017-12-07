@@ -8,10 +8,11 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.shopbilling.dto.MyStoreDetails;
 import com.shopbilling.dto.UserDetails;
+import com.shopbilling.fx.main.Global;
 import com.shopbilling.fx.main.MyStoreFxSplash;
+import com.shopbilling.fx.model.WindowState;
 import com.shopbilling.services.MyStoreServices;
 import com.shopbilling.services.UserServices;
-import com.shopbilling.ui.MainWindow;
 import com.shopbilling.utils.PDFUtils;
 import com.shopbilling.utils.TabContent;
 
@@ -40,7 +41,10 @@ public class LoginController {
 
 	private final static Logger logger = Logger.getLogger(MyStoreFxSplash.class);
 
+	private final static String APPLICATION_HOME_TITTLE = "My Store";
 	
+	private final static String APPLICATION_LOGIN_TITTLE = "Login";
+	 
     @FXML
     private Button btnClose;
 
@@ -90,12 +94,19 @@ public class LoginController {
 				        stage.setScene(scene);
 				        HomeController homeController = fxmlLoader.getController();
 				        homeController.MainWindow = stage;
+				        homeController.userDetails = userDetails;
 				        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/shop32X32.png")));
 				        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/shop48X48.png")));
 				        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/shop64X64.png")));
 				        
-				       // stage.getProperties().put("hostServices", getHostServices());
-				        stage.setTitle("My Store");
+				        final WindowState s = Global.getDefaultWindowState();
+				        stage.setX(s.getXPos());
+				        stage.setY(s.getYPos());
+				        stage.setWidth(s.getWidth());
+				        stage.setHeight(s.getHeight());
+				        
+				       //stage.getProperties().put("hostServices", getHostServices());
+				        stage.setTitle(APPLICATION_HOME_TITTLE);
 				        stage.setMaximized(true);
 				        stage.show();
 				        stage.setOnCloseRequest((WindowEvent event2) -> {
@@ -128,7 +139,7 @@ public class LoginController {
         stage.setY(bounds.getMinY() + bounds.getHeight() / 2 - 447 / 2);
         stage.setAlwaysOnTop(true);
         stage.setScene(scene);
-        stage.setTitle("Login");
+        stage.setTitle(APPLICATION_LOGIN_TITTLE);
         stage.setResizable(false);
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/shop32X32.png")));
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/shop48X48.png")));
