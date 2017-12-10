@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Dinesh
+ * @author Vishal
  */
 public interface TabContent {
     public boolean shouldClose();

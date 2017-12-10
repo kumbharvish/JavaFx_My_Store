@@ -131,7 +131,7 @@ public class HomeController {
 
     @FXML
     private void onFirmDetailsCommand(ActionEvent event) {
-        addTab("FirmDetails", "Store Details");
+        addTab("StoreDetails", "Store Details");
     }
 
     @FXML

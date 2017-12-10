@@ -5,18 +5,11 @@
  */
 package com.shopbilling.fx.controllers;
 
-import com.shopbilling.fx.main.Global;
-import com.shopbilling.fx.model.ApplicationAttributes;
 import com.shopbilling.utils.TabContent;
-import com.shopbilling.utils.Utility;
 
-import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -26,32 +19,46 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Dinesh
+ * @author Vishal
  */
 public class AboutController implements TabContent {
 
     private Stage mainWindow;
+    
     private TabPane tabPane;
-
-    @FXML
-    private Button btnClose;
+    
+    private double version = 1.0;
+    
+    private static final String DEVELOPED_BY = "Vishal Kumbhar / Adhir Shishupal";
+    
+    private static final String MOBILE = "+91 8149880299 / +91 9579616107";
+    
+    private static final String EMAIL_ID = "Kumbharvish@gmail.com";
+    
+    private static final String MY_STORE ="My Store Billing";
+    
+    private static final String COPYRIGHT ="Copyright © 2017";
+    
     @FXML
     private Text txtTitle;
+
     @FXML
     private Text txtVersion;
 
     @FXML
-    private Label lblDeveloper;
+    private Label lblDevelopedBy;
+    
     @FXML
-    private Label lblLocation;
+    private Text txtCopyRight;
+
     @FXML
-    private Label lblMobileNumber;
+    private Label lblEmailId;
+
     @FXML
-    private Hyperlink lnkEmailAddress;
+    private Label lblMobileNo;
+
     @FXML
-    private Hyperlink lnkBlogURL;
-    @FXML
-    private Hyperlink lnkLocation;
+    private Button btnClose;
 
     @Override
     public boolean shouldClose() {
@@ -65,24 +72,7 @@ public class AboutController implements TabContent {
 
     @Override
     public boolean loadData() {
-        ApplicationAttributes attributes = null;
-
-        try {
-            attributes = Global.getApplicationAttributes();
-        } catch (Exception e) {
-            final String message = "An error occurred in fetching application info."
-                    + "\nThe inconvenience caused is regretted !";
-            final Alert alert = new Alert(Alert.AlertType.ERROR, message, ButtonType.OK);
-            alert.setTitle("Error Occurred");
-            alert.setHeaderText("Error in Reading Application Attributes");
-            alert.initOwner(mainWindow);
-            Global.styleAlertDialog(alert);
-            Utility.beep();
-            alert.showAndWait();
-            return false;
-        }
-
-        populateControls(attributes);
+    	populateControls();
         return true;
     }
 
@@ -96,43 +86,18 @@ public class AboutController implements TabContent {
         tabPane = pane;
     }
 
-    private void populateControls(ApplicationAttributes attributes) {
-         txtTitle.setText(attributes.getApplicationName());
-         txtVersion.setText("Version " + attributes.getApplicationVersion());
-         
-         lblDeveloper.setText(attributes.getDeveloperName());
-         lnkLocation.setText(attributes.getDeveloperLocation());
-         lblMobileNumber.setText(attributes.getDeveloperMobileNumber());
-         lnkEmailAddress.setText(attributes.getDeveloperEmailAddress());
-         lnkBlogURL.setText(attributes.getDeveloperBlogURL());
+    private void populateControls() {
+         txtTitle.setText(MY_STORE);
+         txtVersion.setText("Version " + version);
+         txtCopyRight.setText(COPYRIGHT);
+         lblDevelopedBy.setText(DEVELOPED_BY);
+         lblEmailId.setText(EMAIL_ID);
+         lblMobileNo.setText(MOBILE);
     }
 
     @FXML
     private void onCloseTabAction(ActionEvent event) {
         final Tab currentTab = tabPane.getSelectionModel().getSelectedItem();
         tabPane.getTabs().remove(currentTab);
-    }
-    
-    @FXML
-    private void onSendEmailAction(ActionEvent event) {
-        final HostServices hostServices = (HostServices)
-                mainWindow.getProperties().get("hostServices");
-        hostServices.showDocument("mailto:" + lnkEmailAddress.getText());
-    }
-    
-    @FXML
-    private void onVisitURLAction(ActionEvent event) {
-         final HostServices hostServices = (HostServices)
-                mainWindow.getProperties().get("hostServices");
-        hostServices.showDocument(lnkBlogURL.getText());
-    }
-    
-    @FXML
-    private void onLocationVisitAction(ActionEvent event) {
-      final String baseURL =  "https://www.google.com/maps/place/";
-      final HostServices hostServices = (HostServices)
-                mainWindow.getProperties().get("hostServices");
-        String url = baseURL + lnkLocation.getText();
-        hostServices.showDocument(url);
     }
 }

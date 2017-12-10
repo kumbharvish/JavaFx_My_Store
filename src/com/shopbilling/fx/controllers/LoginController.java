@@ -95,9 +95,9 @@ public class LoginController {
 				        HomeController homeController = fxmlLoader.getController();
 				        homeController.MainWindow = stage;
 				        homeController.userDetails = userDetails;
-				        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/shop32X32.png")));
-				        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/shop48X48.png")));
-				        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/shop64X64.png")));
+				        stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/images/shop32X32.png")));
+				        stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/images/shop48X48.png")));
+				        stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/images/shop64X64.png")));
 				        
 				        final WindowState s = Global.getDefaultWindowState();
 				        stage.setX(s.getXPos());
@@ -141,9 +141,9 @@ public class LoginController {
         stage.setScene(scene);
         stage.setTitle(APPLICATION_LOGIN_TITTLE);
         stage.setResizable(false);
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/shop32X32.png")));
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/shop48X48.png")));
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/shop64X64.png")));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/images/shop32X32.png")));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/images/shop48X48.png")));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/images/shop64X64.png")));
         MyStoreDetails mystore = MyStoreServices.getMyStoreDetails();
         lblShopName.setText(mystore.getStoreName());
         try {

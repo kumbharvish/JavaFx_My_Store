@@ -20,6 +20,8 @@ import java.time.format.DateTimeFormatter;
 
 import com.shopbilling.fx.main.Global;
 
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -28,7 +30,7 @@ import javafx.util.StringConverter;
 
 /**
  *
- * @author Dinesh
+ * @author Vishal
  */
 public abstract class Utility {
 
@@ -187,6 +189,14 @@ public abstract class Utility {
          return secondDate;
      }
      
+     //Returns Listner object to force numeric values in textfield
+     public static ChangeListener<String> getForceNumberListner() {
+    	 ChangeListener<String> forceNumberListener = (observable, oldValue, newValue) -> {
+    		    if (!newValue.matches("\\d*"))
+    		      ((StringProperty) observable).set(oldValue);
+    		};
+    		return forceNumberListener;
+     }
      
 } // end of class definition
 

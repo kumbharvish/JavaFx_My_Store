@@ -32,6 +32,8 @@ public class MyStoreDetails {
 	
 	private long mobileNo;
 	
+	private String gstNo;
+	
 	private byte[] image;
 	
 	private InputStream imagePath;
@@ -162,6 +164,14 @@ public class MyStoreDetails {
 
 	public void setImagePath(InputStream imagePath) {
 		this.imagePath = imagePath;
+	}
+
+	public String getGstNo() {
+		return gstNo;
+	}
+
+	public void setGstNo(String gstNo) {
+		this.gstNo = gstNo;
 	}
 	
 }

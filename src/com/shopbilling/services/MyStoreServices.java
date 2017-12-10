@@ -4,14 +4,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.apache.log4j.Logger;
+
 import com.shopbilling.dto.MyStoreDetails;
 import com.shopbilling.utils.PDFUtils;
 
 public class MyStoreServices {
 	
+	private final static Logger logger = Logger.getLogger(MyStoreServices.class.getName());
+	
 	private static final String UPDATE_STORE_DETAILS = "UPDATE MY_STORE_DETAILS SET NAME=?," 
 			+"ADDRESS=?, ADDRESS2=?,CITY=?,DISTRICT=?,STATE=?,PHONE=?,CST_NUMBER=?,PAN_NUMBER=?,VAT_NUMBER=?,ELECTRICITY_NO=?," 
-			+" OWNER_NAME=?,MOBILE_NO=?";
+			+" OWNER_NAME=?,MOBILE_NO=?,GST_NO=?";
 	
 	private static final String GET_MY_STORE_DETAILS = "SELECT * FROM MY_STORE_DETAILS";
 	
@@ -41,10 +45,12 @@ public class MyStoreServices {
 				myStoreDetails.setOwnerName(rs.getString("OWNER_NAME"));
 				myStoreDetails.setMobileNo(rs.getLong("MOBILE_NO"));
 				myStoreDetails.setImage(rs.getBytes("IMAGE"));
+				myStoreDetails.setGstNo(rs.getString("GST_NO"));
 			}
 			rs.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.error("getMyStoreDetails --> "+e);
 		} finally {
 			PDFUtils.closeConnectionAndStatment(conn, stmt);
 		}
@@ -82,11 +88,12 @@ public class MyStoreServices {
 				stmt.setLong(11, myStoreDetails.getElectricityNo());
 				stmt.setString(12, myStoreDetails.getOwnerName());
 				stmt.setLong(13, myStoreDetails.getMobileNo());
+				stmt.setString(14, myStoreDetails.getGstNo());
 				if(myStoreDetails.getImagePath()!=null){
-					stmt.setBlob(14, myStoreDetails.getImagePath());
-					stmt.setInt(15, myStoreDetails.getMyStoreId());
+					stmt.setBlob(15, myStoreDetails.getImagePath());
+					stmt.setInt(16, myStoreDetails.getMyStoreId());
 				}else{
-					stmt.setInt(14, myStoreDetails.getMyStoreId());
+					stmt.setInt(15, myStoreDetails.getMyStoreId());
 				}
 				
 				int i = stmt.executeUpdate();
@@ -96,6 +103,7 @@ public class MyStoreServices {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.error("updateStoreDetails --> "+e);
 		} finally {
 			PDFUtils.closeConnectionAndStatment(conn, stmt);
 		}
