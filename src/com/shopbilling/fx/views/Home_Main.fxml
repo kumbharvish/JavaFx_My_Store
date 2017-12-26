@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../../resources/stylesheets/home.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopbilling.fx.controllers.HomeController">
+   <top>
+      <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu fx:id="homeMenu" mnemonicParsing="false" text="_Home">
+                  <items>
+                    <MenuItem fx:id="manageAccountMenuItem" onAction="#onManageAccountCommand" text="Manage _Account">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="A" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+                           </accelerator></MenuItem>
+                        <MenuItem fx:id="storeDetailsMenuItem" onAction="#onStoreDetailsCommand" text="_Store Details" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="measurementUnitsMenuItem" onAction="#onMeasurementUnitsCommand" text="Measurement _Units">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="U" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="productCategoryMenuItem" onAction="#onProductCategoriesCommand" text="Product _Categories">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="C" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="productMenuItem" onAction="#onProductsCommand" text="_Products">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="P" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="exitMenuItem" onAction="#onExitCommand" text="E_xit">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="X" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                  </items>
+                </Menu>
+                <Menu fx:id="invoiceMenu" text="_Invoice">
+                  <items>
+                    <MenuItem fx:id="createInvoiceMenuItem" text="_Create Invoice">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="I" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+                           </accelerator></MenuItem>
+                        <MenuItem fx:id="searchInvoiceItem" text="_Search Invoice">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="F" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="returnMenuItem" text="Invoice _Return">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="R" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                  </items>
+                </Menu>
+                <Menu fx:id="barcodeMenu" text="_Barcode">
+                  <items>
+                    <MenuItem fx:id="generateBarcodeMenuItem" text="_Generate Barcode Number" />
+                        <MenuItem fx:id="printBarcodeMenuItem" text="Print Barc_ode" />
+                  </items>
+                </Menu>
+                  <Menu fx:id="purchaseMenu" text="_Purchase">
+                    <items>
+                        <MenuItem fx:id="suppliersMenuItem" text="_Suppliers" />
+                      <MenuItem fx:id="stockEntryMenuItem" text="Stock Purchase _Entry" />
+                        <MenuItem fx:id="stockHistoryMenuItem" text="Stock Purchase _History" />
+                    </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+            <ToolBar fx:id="toolBar" prefHeight="40.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

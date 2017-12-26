@@ -33,9 +33,9 @@
             </HBox>
             <GridPane hgap="20.0" styleClass="parent" vgap="15.0">
                 <children>
-                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" styleClass="left" text="Developed by :" />
-                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" styleClass="left" text="Email Id :" GridPane.rowIndex="1" />
-                  <Label styleClass="left" text="Mobile No :" GridPane.rowIndex="2" />
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" styleClass="left" text="Developed by :" GridPane.halignment="RIGHT" />
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" styleClass="left" text="Email Id :" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                  <Label styleClass="left" text="Mobile No :" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                   <Label fx:id="lblDevelopedBy" styleClass="right" GridPane.columnIndex="1" />
                   <Label fx:id="lblEmailId" styleClass="right" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label fx:id="lblMobileNo" styleClass="right" GridPane.columnIndex="1" GridPane.rowIndex="2" />
