@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../../resources/stylesheets/home.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopbilling.fx.controllers.HomeController">
+<BorderPane id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="687.0" stylesheets="@../../../../resources/stylesheets/home.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopbilling.fx.controllers.HomeController">
    <top>
       <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
          <children>
@@ -29,14 +29,20 @@
                               <KeyCodeCombination alt="UP" code="U" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
                            </accelerator>
                         </MenuItem>
-                        <MenuItem fx:id="productCategoryMenuItem" onAction="#onProductCategoriesCommand" text="Product _Categories">
+                        <MenuItem fx:id="productCategoryMenuItem" onAction="#onProductCategoriesCommand" text="Product Ca_tegories">
                            <accelerator>
-                              <KeyCodeCombination alt="UP" code="C" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+                              <KeyCodeCombination alt="UP" code="T" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
                            </accelerator>
                         </MenuItem>
                         <MenuItem fx:id="productMenuItem" onAction="#onProductsCommand" text="_Products">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="P" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="expenseMenu" text="Expe_nse">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="N" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
                            </accelerator>
                         </MenuItem>
                         <SeparatorMenuItem mnemonicParsing="false" />
@@ -65,6 +71,17 @@
                         </MenuItem>
                   </items>
                 </Menu>
+                  <Menu fx:id="customersMenu" text="_Customers">
+                    <items>
+                      <MenuItem fx:id="customersMenuItem" text="C_ustomers">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="C" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="customerPaymentHistoryMenuItem" text="Pa_yment History" />
+                        <MenuItem fx:id="customerPurchaseHistoryMenuItem" text="Purchase _History" />
+                    </items>
+                  </Menu>
                 <Menu fx:id="barcodeMenu" text="_Barcode">
                   <items>
                     <MenuItem fx:id="generateBarcodeMenuItem" text="_Generate Barcode Number" />
@@ -76,6 +93,35 @@
                         <MenuItem fx:id="suppliersMenuItem" text="_Suppliers" />
                       <MenuItem fx:id="stockEntryMenuItem" text="Stock Purchase _Entry" />
                         <MenuItem fx:id="stockHistoryMenuItem" text="Stock Purchase _History" />
+                    </items>
+                  </Menu>
+                  <Menu fx:id="reportsHomeMenu" text="_Reports">
+                     <items>
+                        <Menu fx:id="reportsMenu" mnemonicParsing="false" text="Reports">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                          </items>
+                        </Menu>
+                        <Menu fx:id="graphicalReportsMenu" text="_Graphical Reports">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                          </items>
+                        </Menu>
+                        <Menu fx:id="analysisReportsMenu" text="Business _Analysis Reports">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                          </items>
+                        </Menu>
+                     </items>
+                  </Menu>
+                  <Menu fx:id="preferencesMenu" mnemonicParsing="false" text="Pre_ferences">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                    </items>
+                  </Menu>
+                  <Menu fx:id="helpMenu" text="_Help">
+                    <items>
+                      <MenuItem fx:id="aboutUsMenuItem" text="About _Us" />
                     </items>
                   </Menu>
               </menus>
