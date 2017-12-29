@@ -25,10 +25,8 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
@@ -56,54 +54,162 @@ public class HomeController {
     private final static String INVOICE_VIEW_FILE_NAME = "Invoice";
 
     @FXML
-    private ToolBar toolbar;
+    private MenuItem manageAccountMenuItem;
+
     @FXML
-    private TabPane tabPane;
-    @FXML
-    private Label lblCreateInvoice;
-    @FXML
-    private Label lblSearchInvoice;
-    @FXML
-    private Label lblReceivePayment;
-    @FXML
-    private Label lblSearchPayment;
-    @FXML
-    private Label lblCustomers;
-    @FXML
-    private Label lblCustomerAccount;
-    @FXML
-    private Label lblItems;
-    @FXML
-    private Label lblMeasurementUnits;
-    @FXML
-    private Label lblBackup;
-    @FXML
-    private MenuItem firmDetailsMenuItem;
+    private MenuItem storeDetailsMenuItem;
+
     @FXML
     private MenuItem measurementUnitsMenuItem;
+
     @FXML
-    private MenuItem itemsMenuItem;
+    private MenuItem productCategoryMenuItem;
+
+    @FXML
+    private MenuItem productsMenuItem;
+
+    @FXML
+    private MenuItem expenseMenuItem;
+
+    @FXML
+    private MenuItem exitMenuItem;
+
     @FXML
     private MenuItem createInvoiceMenuItem;
+
     @FXML
     private MenuItem searchInvoiceMenuItem;
+
     @FXML
-    private MenuItem paymentReceivedMenuItem;
-    @FXML
-    private MenuItem paymentSearchMenuItem;
+    private MenuItem returnInvoiceMenuItem;
+
     @FXML
     private MenuItem customersMenuItem;
+
     @FXML
-    private MenuItem customerAccountMenuItem;
+    private MenuItem customerPaymentHistoryMenuItem;
+
     @FXML
-    private MenuItem backupDatabaseMenuItem;
+    private MenuItem customerPurchaseHistoryMenuItem;
+
+    @FXML
+    private MenuItem generateBarcodeMenuItem;
+
+    @FXML
+    private MenuItem printBarcodeMenuItem;
+
+    @FXML
+    private MenuItem suppliersMenuItem;
+
+    @FXML
+    private MenuItem stockEntryMenuItem;
+
+    @FXML
+    private MenuItem stockHistoryMenuItem;
+
+    @FXML
+    private MenuItem salesStockValueReportMenuItem;
+
+    @FXML
+    private MenuItem productProfitReportMenuItem;
+
+    @FXML
+    private MenuItem customersReportMenuItem;
+
+    @FXML
+    private MenuItem zeroStockProductsReportMenuItem;
+
+    @FXML
+    private MenuItem productCategoryWiseStockReprotMenuItem;
+
+    @FXML
+    private MenuItem salesReportMenuItem;
+
+    @FXML
+    private MenuItem salesReturnReportMenuItem;
+
+    @FXML
+    private MenuItem monthlyReportMenuItem;
+
+    @FXML
+    private MenuItem profitLossReportMenuItem;
+
+    @FXML
+    private MenuItem cashCounterReportMenuItem;
+
+    @FXML
+    private MenuItem paymentModeWiseSalesMenuItem;
+
+    @FXML
+    private MenuItem dailySalesMenuItem;
+
+    @FXML
+    private MenuItem monthlySalesMenuItem;
+
+    @FXML
+    private MenuItem productWiseProfitMenuItem;
+
+    @FXML
+    private MenuItem billWiseProfitMenuItem;
+
+    @FXML
+    private MenuItem stockEntryWiseProfitReportMenuItem;
+
+    @FXML
+    private MenuItem customerWiseProfitReportMenuItem;
+
+    @FXML
+    private MenuItem productWiseSalesReportMenuItem;
+
     @FXML
     private MenuItem userPreferencesMenuItem;
-    @FXML
-    private MenuItem closeFinancialYearMenuItem;
-    @FXML
-    private MenuItem compactDatabaseMenuItem;
 
+    @FXML
+    private MenuItem databackupMailSettingsMenuItem;
+    
+    @FXML
+    private MenuItem dataBackupMenuItem;
+
+    @FXML
+    private CheckMenuItem hideToolbarMenuItem;
+
+   //Help Menu
+
+    @FXML
+    private MenuItem aboutUsMenuItem;
+
+    @FXML
+    private ToolBar toolBar;
+
+    @FXML
+    private Label lblCreateInvoice;
+
+    @FXML
+    private Label lblSearchInvoice;
+
+    @FXML
+    private Label lblProducts;
+
+    @FXML
+    private Label lblMeasurementUnits;
+
+    @FXML
+    private Label lblProductCategories;
+
+    @FXML
+    private Label lblSaleReport;
+
+    @FXML
+    private Label lblCashCounter;
+
+    @FXML
+    private Label lblDataBackup;
+
+    @FXML
+    private Label lblUserSettings;
+
+    @FXML
+    private TabPane tabPane;
     
     public void initialize() {
         tabPane.getSelectionModel().selectedItemProperty()
@@ -119,7 +225,86 @@ public class HomeController {
                     }
                 });
 
-        toolbar.managedProperty().bind(toolbar.visibleProperty());
+        toolBar.managedProperty().bind(toolBar.visibleProperty());
+    }
+
+
+    @FXML
+    void onAboutUsCommand(ActionEvent event) {
+    	addTab("About", "About");
+    }
+
+    @FXML
+    void onBillWiseProfitCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onCashCounterClick(MouseEvent event) {
+
+    }
+
+    @FXML
+    void onCashCounterCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onCreateInvoiceClick(MouseEvent event) {
+
+    }
+
+    @FXML
+    void onCreateInvoiceCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onCustomerCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onCustomerPaymentHistoryCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onCustomerPurchaseHistoryCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onCustomerReportCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onCustomerWiseProfitCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onDailySalesReportCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onDataBackupClick(MouseEvent event) {
+    	if (event.getButton() == MouseButton.PRIMARY && 
+                event.getClickCount() == 1) {
+    		dataBackupMenuItem.fire();
+        }
+    }
+
+    @FXML
+    void onDataBackupMailSettingsCommand(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void onDataBackupCommand(ActionEvent event) {
+
     }
 
     @FXML
@@ -130,99 +315,179 @@ public class HomeController {
     }
 
     @FXML
-    private void onFirmDetailsCommand(ActionEvent event) {
-        addTab("StoreDetails", "Store Details");
+    void onExpenseCommand(ActionEvent event) {
+
     }
 
     @FXML
-    private void onCustomersAction(ActionEvent event) {
-        addTab("Customers", "Customers");
+    void onGenerateBarcodeCommand(ActionEvent event) {
+
     }
 
     @FXML
-    private void onMeasurementUnitsCommmand(ActionEvent event) {
-        addTab("UnitsOfMeasurement", "Units of Measurement");
+    void onHideToolbarCommand(ActionEvent event) {
+    	 CheckMenuItem menuItem = (CheckMenuItem) event.getSource();
+         toolBar.setVisible(!menuItem.isSelected());
     }
 
     @FXML
-    private void onItemsCommmand(ActionEvent event) {
-        addTab("Items", "Items");
+    void onManageAccountCommand(ActionEvent event) {
+
     }
 
     @FXML
-    private void onCreateInvoiceAction(ActionEvent event) {
-        addTab("Invoice", "New Invoice");
+    void onMeasuermentUnitsClick(MouseEvent event) {
+
     }
 
     @FXML
-    private void onSearchInvoiceAction(ActionEvent event) {
-        addTab("InvoiceSearch", "Invoice Search");
+    void onMeasurementUnitsCommand(ActionEvent event) {
+
     }
 
     @FXML
-    private void onReceivePaymentAction(ActionEvent event) {
-        addTab("Payment", "Receive Payment");
+    void onMonthlyReportCommand(ActionEvent event) {
+
     }
 
     @FXML
-    private void onSearchPaymentAction(ActionEvent event) {
-        addTab("PaymentsSearch", "Payments Search");
+    void onMonthlySalesReportCommand(ActionEvent event) {
+
     }
 
     @FXML
-    private void onCustomerAccountAction(ActionEvent event) {
-        addTab("CustomerAccountLookup", "Customer Account");
+    void onPaymentModeWiseSalesCommand(ActionEvent event) {
+
     }
 
     @FXML
-    private void onApplicationDataLocationAction(ActionEvent event) {
-        addTab("AppDataLocation", "Application Data Location");
+    void onPrintBarcodeCommand(ActionEvent event) {
+
     }
 
     @FXML
-    private void onCreateFinancialYearAction(ActionEvent event) {
-        addTab("CreateFinancialYear", "New Financial Year");
+    void onProductCategoriesClick(MouseEvent event) {
+
+    }
+
+    @FXML
+    void onProductCategoriesCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onProductCategoryWiseStockCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onProductProfitReportCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onProductWiseProfitCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onProductWiseSalesCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onProductsClick(MouseEvent event) {
+    	if (event.getButton() == MouseButton.PRIMARY && 
+                event.getClickCount() == 1) {
+           productsMenuItem.fire();
+        }
+    }
+
+    @FXML
+    void onProductsCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onProfitLossCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onReturnInvoiceCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onSaleReportClick(MouseEvent event) {
+
+    }
+
+    @FXML
+    void onSalesReportCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onSalesReturnReportCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onSalesStockValueReportCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onSearchInvoiceClick(MouseEvent event) {
+
+    }
+
+    @FXML
+    void onSearchInvoiceCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onStockEntryCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onStockEntryWiseProfitCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onStockHistoryCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onStoreDetailsCommand(ActionEvent event) {
+    	addTab("StoreDetails", "Store Details");
+    }
+
+    @FXML
+    void onSuppliersCommand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onUserPreferencesCommand(ActionEvent event) {
+    	 addTab("UserPreferences", "User Preferences");
+    }
+
+    @FXML
+    void onUserSettingsClick(MouseEvent event) {
+
+    }
+
+    @FXML
+    void onZeroStockProductsCommand(ActionEvent event) {
+
     }
     
-    @FXML
-    private void onOpenFinancialYearAction(ActionEvent event) {
-        addTab("OpenFinancialYear", "Open Financial Year");
-    }
-    
-    @FXML
-    private void onDeleteFinancialYearAction(ActionEvent event) {
-        addTab("DeleteFinancialYear", "Delete Financial Year");
-    }
-
-    @FXML
-    private void onUserPreferencesAction(ActionEvent event) {
-        addTab("UserPreferences", "User Preferences");
-    }
-    
-    @FXML
-    private void onCloseFinancialYearAction(ActionEvent event) {
-         if (!closeAllTabs()) {
-             return;
-         }
-         
-         //Database.shutDownActiveYearDatabase();
-    }
-    
-    @FXML
-    private void onBackupDatabaseAction(ActionEvent event) {
-        addTab("Backup", "Database Backup");
-    }
-    
-     @FXML
-    private void onRestoreDatabaseAction(ActionEvent event) {
-        addTab("RestoreDatabase", "Database Restore");
-    }
-    
-     @FXML
-    private void onAboutDialogAction(ActionEvent event) {
-        addTab("About", "About");
-    }
-
     private void addTab(final String fxmlFileName, final String title) {
 
         final String KEY = "fxml";
@@ -354,126 +619,4 @@ public class HomeController {
         return true;
     }
 
-    @FXML
-    private void onHideToolbarAction(ActionEvent event) {
-        CheckMenuItem menuItem = (CheckMenuItem) event.getSource();
-        toolbar.setVisible(!menuItem.isSelected());
-    }
-    
-    @FXML
-    private void onCreateInvoiceCommand(MouseEvent event) {
-         if (event.getButton() == MouseButton.PRIMARY && 
-                 event.getClickCount() == 1) {
-             createInvoiceMenuItem.fire();
-         }
-    }
-    
-    @FXML
-    private void onSearchInvoicesCommand(MouseEvent event) {
-         if (event.getButton() == MouseButton.PRIMARY && 
-                 event.getClickCount() == 1) {
-             searchInvoiceMenuItem.fire();
-         }
-    }
-    
-    @FXML
-    private void onReceivePaymentCommand(MouseEvent event) {
-         if (event.getButton() == MouseButton.PRIMARY && 
-                 event.getClickCount() == 1) {
-             paymentReceivedMenuItem.fire();
-         }
-    }
-    
-    @FXML
-    private void onSearchPaymentsCommand(MouseEvent event) {
-         if (event.getButton() == MouseButton.PRIMARY && 
-                 event.getClickCount() == 1) {
-             paymentSearchMenuItem.fire();
-         }
-    }
-    
-   @FXML
-    private void onCustomersCommand(MouseEvent event) {
-         if (event.getButton() == MouseButton.PRIMARY && 
-                 event.getClickCount() == 1) {
-            customersMenuItem.fire();
-         }
-    }
-    
-    @FXML
-    private void onCustomerAccountCommand(MouseEvent event) {
-         if (event.getButton() == MouseButton.PRIMARY && 
-                 event.getClickCount() == 1) {
-            customerAccountMenuItem.fire();
-         }
-    }
-    
-   @FXML
-    private void onItemsCommand(MouseEvent event) {
-         if (event.getButton() == MouseButton.PRIMARY && 
-                 event.getClickCount() == 1) {
-            itemsMenuItem.fire();
-         }
-    }
-    
-    @FXML
-    private void onMeasurementUnitsCommand(MouseEvent event) {
-         if (event.getButton() == MouseButton.PRIMARY && 
-                 event.getClickCount() == 1) {
-            measurementUnitsMenuItem.fire();
-         }
-    }
-    
-   @FXML
-    private void onUserSettingsCommand(MouseEvent event) {
-         if (event.getButton() == MouseButton.PRIMARY && 
-                 event.getClickCount() == 1) {
-            userPreferencesMenuItem.fire();
-         }
-    }
-    
-    @FXML
-    private void onBackupCommand(MouseEvent event) {
-         if (event.getButton() == MouseButton.PRIMARY && 
-                 event.getClickCount() == 1) {
-            backupDatabaseMenuItem.fire();
-         }
-    }
-    
-    @FXML
-    private void onCompactDatabaseAction(final ActionEvent event) {
-        MainWindow.getScene().setCursor(Cursor.WAIT);
-        Platform.runLater(() -> {
-            compactDatabase();
-        });
-    }
-    
-    private void compactDatabase() {
-         boolean isSuccess = true;//Database.compactDatabase();
-          MainWindow.getScene().setCursor(Cursor.DEFAULT);
-        
-        if (isSuccess) {
-            final String message = "The database was successfully compacted !!";
-            final Alert alert = new Alert(Alert.AlertType.INFORMATION, message, 
-                    ButtonType.OK);
-            alert.initOwner(MainWindow);
-            alert.setTitle("Success");
-            alert.setHeaderText("Database Successfully Compacted !!!");
-             Global.styleAlertDialog(alert);
-            alert.showAndWait();
-        } else {
-            final String message = "An error occurred while compacting the database." + 
-                    "\nThe operation was aborted.";
-            final Alert alert = new Alert(Alert.AlertType.ERROR, message,
-                    ButtonType.OK);
-            alert.initOwner(MainWindow);
-            alert.setTitle("Compacting Unsuccessful");
-            alert.setHeaderText("Database Compaction Failed !");
-            Utility.beep();
-             Global.styleAlertDialog(alert);
-            alert.showAndWait();
-        }
-        
-    }
-    
 }
