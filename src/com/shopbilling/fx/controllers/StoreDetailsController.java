@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import com.shopbilling.dto.MyStoreDetails;
 import com.shopbilling.fx.main.Global;
 import com.shopbilling.services.MyStoreServices;
+import com.shopbilling.utils.PDFUtils;
 import com.shopbilling.utils.TabContent;
 import com.shopbilling.utils.Utility;
 
@@ -188,7 +189,7 @@ public class StoreDetailsController implements TabContent
 		boolean isSuccess = MyStoreServices.updateStoreDetails(myStoreDetails);
     	
     	if(isSuccess) {
-    		showSuccessAlert();
+    		PDFUtils.showInfoAlert(MainWindow, "Details saved successfully !", "Information");
     	}else {
     		String message = Utility.getDataSaveErrorText();
             Utility.beep();
@@ -309,17 +310,5 @@ public class StoreDetailsController implements TabContent
 
            return result.get();
     }
-     
-     private void showSuccessAlert() {
-         
-         final String promptMessage = "Details saved successfully !";
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("Information");
-            alert.setContentText(promptMessage);
-            alert.initOwner(MainWindow);
-             Global.styleAlertDialog(alert);
-             alert.show();
-     }
      
 }

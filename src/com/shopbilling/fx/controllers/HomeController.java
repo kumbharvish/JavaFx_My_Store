@@ -7,13 +7,19 @@ package com.shopbilling.fx.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JOptionPane;
+
 import com.shopbilling.dto.UserDetails;
 import com.shopbilling.fx.main.Global;
+import com.shopbilling.services.DBBackupService;
+import com.shopbilling.utils.PDFUtils;
 import com.shopbilling.utils.TabContent;
 import com.shopbilling.utils.Utility;
 
@@ -226,9 +232,11 @@ public class HomeController {
                 });
 
         toolBar.managedProperty().bind(toolBar.visibleProperty());
+        //Take Database Backup
+        DBBackupService.createDBDump();
+        PDFUtils.licenseExpiryAlert(null);
     }
-
-
+   
     @FXML
     void onAboutUsCommand(ActionEvent event) {
     	addTab("About", "About");
@@ -310,6 +318,7 @@ public class HomeController {
     @FXML
     private void onExitCommand(ActionEvent event) {
       /* DO NOT USE MainWindow.close() */
+    	DBBackupService.createDBDump();
        MainWindow.fireEvent(new WindowEvent(MainWindow,
                WindowEvent.WINDOW_CLOSE_REQUEST));
     }

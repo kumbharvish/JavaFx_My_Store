@@ -36,9 +36,12 @@ import javax.swing.table.JTableHeader;
 
 import org.apache.log4j.Logger;
 
+import com.shopbilling.fx.main.Global;
 import com.shopbilling.properties.AppProperties;
 import com.shopbilling.services.BillingServices;
 
+import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -360,7 +363,16 @@ public class PDFUtils {
 	    long diff = d2.getTime() - d1.getTime();
 	    return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 	}
-	
+	//JFX Methods
+	public static void showInfoAlert(Stage stage,String promptMessage, String title) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle(title);
+            alert.setContentText(promptMessage);
+            alert.initOwner(stage);
+             Global.styleAlertDialog(alert);
+             alert.show();
+     }
 	
 	public static void main(String[] args) throws Exception {
 	}

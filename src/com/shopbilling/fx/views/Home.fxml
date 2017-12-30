@@ -179,7 +179,7 @@
                   <Separator maxHeight="24.0" orientation="VERTICAL" />
                   <Label fx:id="lblSaleReport" onMouseClicked="#onSaleReportClick">
                      <tooltip>
-                        <Tooltip text="Sale Report" />
+                        <Tooltip text="Sales Report" />
                      </tooltip>
                   </Label>
                   <Label fx:id="lblCashCounter" onMouseClicked="#onCashCounterClick">

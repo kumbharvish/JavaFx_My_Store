@@ -11,6 +11,7 @@ import com.shopbilling.dto.UserDetails;
 import com.shopbilling.fx.main.Global;
 import com.shopbilling.fx.main.MyStoreFxSplash;
 import com.shopbilling.fx.model.WindowState;
+import com.shopbilling.services.AppLicenseServices;
 import com.shopbilling.services.MyStoreServices;
 import com.shopbilling.services.UserServices;
 import com.shopbilling.utils.PDFUtils;
@@ -153,9 +154,8 @@ public class LoginController {
 			e.printStackTrace();
 		}
         stage.show();
-
-        /*Stage mainStage = (Stage)main.getScene().getWindow();
-        mainStage.close();*/
+    	//Update Last Run
+  		AppLicenseServices.updateLastRun();
     }
 
 	 private void addKeyFilter(final Scene scene) {

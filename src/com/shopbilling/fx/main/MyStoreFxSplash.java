@@ -9,6 +9,7 @@ import com.shopbilling.constants.AppConstants;
 import com.shopbilling.fx.controllers.LoginController;
 import com.shopbilling.properties.AppProperties;
 import com.shopbilling.services.AppLicenseServices;
+import com.shopbilling.services.DBBackupService;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -116,7 +117,6 @@ public class MyStoreFxSplash extends Application {
  						parent = fxmlLoader.load();
  				        LoginController loginController = fxmlLoader.getController();
  				        loginController.show(parent);
- 				       
  					}
  				}
  			}
@@ -160,6 +160,11 @@ public class MyStoreFxSplash extends Application {
         initStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/shop48X48.png")));
         initStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/shop64X64.png")));
         initStage.show();
+    }
+    
+    @Override
+    public void stop() throws Exception {
+    	DBBackupService.createDBDump();
     }
 
     public interface InitCompletionHandler {
