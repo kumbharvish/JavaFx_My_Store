@@ -99,9 +99,9 @@
                         <MenuItem fx:id="stockHistoryMenuItem" onAction="#onStockHistoryCommand" text="Stock Purchase _History" />
                     </items>
                   </Menu>
-                  <Menu fx:id="analysisReportsMenu" text="_Reports">
+                  <Menu fx:id="reportsHomeMenu" text="_Reports">
                      <items>
-                        <Menu fx:id="graphicalReportsMenu" text="R_eports">
+                        <Menu fx:id="reportsMenu" text="R_eports">
                           <items>
                             <MenuItem fx:id="salesStockValueReportMenuItem" onAction="#onSalesStockValueReportCommand" text="Sales Stock _Value Report" />
                               <MenuItem fx:id="productProfitReportMenuItem" onAction="#onProductProfitReportCommand" text="Product Pro_fit Report" />
