@@ -2,7 +2,6 @@ package com.shopbilling.ui;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -10,8 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,19 +17,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
 import com.shopbilling.constants.AppConstants;
 import com.shopbilling.dto.MyStoreDetails;
 import com.shopbilling.dto.UserDetails;
-import com.shopbilling.properties.AppProperties;
 import com.shopbilling.services.AppLicenseServices;
 import com.shopbilling.services.MyStoreServices;
 import com.shopbilling.services.UserServices;
@@ -90,14 +84,19 @@ public class ManageStoreUI extends JFrame {
 		lblContactNo.setForeground(Color.BLACK);
 		lblContactNo.setFont(new Font("Tahoma", Font.BOLD, 13));
 		MyStoreDetails storeDetails = MyStoreServices.getMyStoreDetails();
-		JLabel lblNewLabel = new JLabel(storeDetails.getStoreName().toUpperCase()+" , "+storeDetails.getCity().toUpperCase());
+		
+		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setBounds(214, 50, 926, 76);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 35));
+		if(storeDetails!=null)
+		lblNewLabel.setText(storeDetails.getStoreName().toUpperCase()+" , "+storeDetails.getCity().toUpperCase());
+		else
+			lblNewLabel.setText("Store Name Missing");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel lblstoreLogo = new JLabel("");
 		lblstoreLogo.setBounds(101, 24, 199, 139);
-		if(storeDetails.getImage()!=null){
+		if(storeDetails!=null && storeDetails.getImage()!=null){
 			lblstoreLogo.setIcon(PDFUtils.resizeImage(storeDetails.getImage(), lblstoreLogo));
 		}
 		
