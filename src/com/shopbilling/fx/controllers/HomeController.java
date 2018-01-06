@@ -317,8 +317,6 @@ public class HomeController {
 
     @FXML
     private void onExitCommand(ActionEvent event) {
-      /* DO NOT USE MainWindow.close() */
-    	DBBackupService.createDBDump();
        MainWindow.fireEvent(new WindowEvent(MainWindow,
                WindowEvent.WINDOW_CLOSE_REQUEST));
     }

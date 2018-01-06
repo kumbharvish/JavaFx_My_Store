@@ -10,6 +10,7 @@ import com.shopbilling.fx.controllers.LoginController;
 import com.shopbilling.properties.AppProperties;
 import com.shopbilling.services.AppLicenseServices;
 import com.shopbilling.services.DBBackupService;
+import com.shopbilling.utils.PDFUtils;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -79,37 +80,35 @@ public class MyStoreFxSplash extends Application {
         final Task<ObservableList<String>> tasks = new Task<ObservableList<String>>() {
             @Override
             protected ObservableList<String> call() throws InterruptedException {
-                ObservableList<String> foundFriends =  FXCollections.<String>observableArrayList();
                 ObservableList<String> loadingStepMsg = FXCollections.observableArrayList(
                                 "Loading","Getting Properties", "Applying Properties", "Starting Application");
                 for (int i = 0; i < loadingStepMsg.size(); i++) {
                     updateProgress(i + 1, loadingStepMsg.size());
                     String nextFriend = loadingStepMsg.get(i);
-                    foundFriends.add(nextFriend);
                     updateMessage(nextFriend + " ...");
                     Thread.sleep(1000);
                 }
                 Thread.sleep(1000);
-                return foundFriends;
+                return loadingStepMsg;
             }
         };
 
-        showSplash(initStage,tasks,() -> showLoginStage());
+        showSplash(initStage,tasks,() -> showLoginStage(initStage));
         new Thread(tasks).start();
     }
 
-    private void showLoginStage(){
+    private void showLoginStage(Stage initStage){
     	 try {
              if(!AppProperties.check()){
- 				JOptionPane.showMessageDialog(null, AppConstants.LICENSE_ERROR_1, AppConstants.LICENSE_ERROR, JOptionPane.WARNING_MESSAGE);
+            	 PDFUtils.showWarningAlert(null, AppConstants.LICENSE_ERROR_1, AppConstants.LICENSE_ERROR);
  				System.exit(0);
  			}else{
  				if(AppLicenseServices.change()){
- 					JOptionPane.showMessageDialog(null, AppConstants.COMP_DATE_ERROR, AppConstants.COMP_DATE, JOptionPane.WARNING_MESSAGE);
+ 					PDFUtils.showWarningAlert(null, AppConstants.COMP_DATE_ERROR, AppConstants.COMP_DATE);
  					System.exit(0);
  				}else{
  					if(!AppProperties.doCheck()){
- 						JOptionPane.showMessageDialog(null, AppConstants.LICENSE_ERROR_2, AppConstants.LICENSE_EXPIRED, JOptionPane.WARNING_MESSAGE);
+ 						PDFUtils.showWarningAlert(null, AppConstants.LICENSE_ERROR_2, AppConstants.LICENSE_EXPIRED);
  						System.exit(0);
  					}else{
  						logger.error(" --- Application Check Complete and Started --- ");

@@ -363,6 +363,7 @@ public class PDFUtils {
 	    long diff = d2.getTime() - d1.getTime();
 	    return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 	}
+	
 	//JFX Methods
 	public static void showInfoAlert(Stage stage,String promptMessage, String title) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -371,8 +372,29 @@ public class PDFUtils {
             alert.setContentText(promptMessage);
             alert.initOwner(stage);
              Global.styleAlertDialog(alert);
-             alert.show();
+             alert.showAndWait();
+             
      }
+	
+	public static void showWarningAlert(Stage stage,String promptMessage, String title) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText(null);
+        alert.setTitle(title);
+        alert.setContentText(promptMessage);
+        alert.initOwner(stage);
+         Global.styleAlertDialog(alert);
+         alert.showAndWait();
+	}
+	
+	public static void showConfirmAlert(Stage stage,String promptMessage, String title) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setTitle(title);
+        alert.setContentText(promptMessage);
+        alert.initOwner(stage);
+         Global.styleAlertDialog(alert);
+         alert.showAndWait();
+	}
 	
 	public static void main(String[] args) throws Exception {
 	}

@@ -146,11 +146,16 @@ public class LoginController {
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/images/shop48X48.png")));
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/images/shop64X64.png")));
         MyStoreDetails mystore = MyStoreServices.getMyStoreDetails();
-        lblShopName.setText(mystore.getStoreName());
+        if(mystore!=null) {
+        	lblShopName.setText(mystore.getStoreName());
+        }else {
+        	lblShopName.setText("Store Name Here");
+        }
+        
         try {
 			lblLicenseValideUpto.setText(PDFUtils.dec(PDFUtils.getAppDataValues("APP_SECURE_KEY").get(0)));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			logger.error("LogginController.show-->"+e);
 			e.printStackTrace();
 		}
         stage.show();
