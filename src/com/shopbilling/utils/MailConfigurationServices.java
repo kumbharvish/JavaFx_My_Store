@@ -4,10 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.apache.log4j.Logger;
+
 import com.shopbilling.dto.MailConfigDTO;
 import com.shopbilling.dto.StatusDTO;
+import com.shopbilling.fx.main.MyStoreFxSplash;
 
 public class MailConfigurationServices {
+	
+	private final static Logger logger = Logger.getLogger(MyStoreFxSplash.class);
 
 	private static final String GET_MAIL_CONFIG = "SELECT * FROM MAIL_CONFIG";
 	
@@ -39,6 +44,7 @@ public class MailConfigurationServices {
 			rs.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.error("MailCofigurationServices getMailConfig -->",e);
 		} finally {
 			PDFUtils.closeConnectionAndStatment(conn, stmt);
 		}
@@ -70,6 +76,7 @@ public class MailConfigurationServices {
 			e.printStackTrace();
 			status.setException(e.getMessage());
 			status.setStatusCode(-1);
+			logger.error("MailCofigurationServices updateMailConfig -->",e);
 		} finally {
 			PDFUtils.closeConnectionAndStatment(conn, stmt);
 		}

@@ -104,5 +104,7 @@ public class AppConstants {
 
 	public static final String PROFIT = "Sales Profit";
 	
+	public static final String RENEW_LICENESE = "Renew License";
+	
 	
 }

@@ -75,7 +75,7 @@
                         </MenuItem>
                   </items>
                 </Menu>
-                  <Menu fx:id="customersMenu" text="_Customers">
+                  <Menu fx:id="customersMenu" text="C_ustomers">
                     <items>
                       <MenuItem fx:id="customersMenuItem" onAction="#onCustomerCommand" text="C_ustomers">
                            <accelerator>

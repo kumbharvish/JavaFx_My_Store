@@ -36,6 +36,7 @@ import javax.swing.table.JTableHeader;
 
 import org.apache.log4j.Logger;
 
+import com.shopbilling.constants.AppConstants;
 import com.shopbilling.fx.main.Global;
 import com.shopbilling.properties.AppProperties;
 import com.shopbilling.services.BillingServices;
@@ -53,6 +54,7 @@ public class PDFUtils {
 	private static final String PASS = "DB.PASSWORD";
 	private static final String PDF_CONST = "SLAES";
     private static final String PDF_RANDOM = "Invoice1Hbfh667adfDEJ78";
+    private static final int LICENSE_EXPIRY_LIMIT =15;
 	
 	private static final String APP_DATA = "SELECT VALUE_STRING FROM "
 			+ "APP_DATA WHERE DATA_NAME=?";
@@ -396,6 +398,26 @@ public class PDFUtils {
          alert.showAndWait();
 	}
 	
-	public static void main(String[] args) throws Exception {
+	public static void licenseExpiryAlert() {
+		try {
+			String licenseDateStr =dec(getAppDataValues("APP_SECURE_KEY").get(0));
+			SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+			Date licenseDate = sdf.parse(licenseDateStr);
+			Date currentDate = new Date();
+			long diff = getDifferenceDays(currentDate,licenseDate);
+			if(diff<=LICENSE_EXPIRY_LIMIT) {
+				Alert alert = new Alert(Alert.AlertType.WARNING);
+		        alert.setHeaderText(null);
+		        alert.setTitle(AppConstants.RENEW_LICENESE);
+		        alert.setContentText("Your license expires in "+diff+" days. Kindly renew your license!");
+		        alert.initOwner(null);
+		         Global.styleAlertDialog(alert);
+		         alert.showAndWait();
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			logger.error("licenseExpiryAlert :",e);
+		}
 	}
+	
 }

@@ -12,9 +12,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
+
+import org.apache.log4j.Logger;
 
 import com.shopbilling.dto.UserDetails;
 import com.shopbilling.fx.main.Global;
@@ -55,8 +56,8 @@ public class HomeController {
     
     public UserDetails userDetails = null;
 
-    private final static Logger logger
-            = Logger.getLogger(HomeController.class.getName());
+    private final static Logger logger = Logger.getLogger(HomeController.class);
+    
     private final static String INVOICE_VIEW_FILE_NAME = "Invoice";
 
     @FXML
@@ -234,7 +235,7 @@ public class HomeController {
         toolBar.managedProperty().bind(toolBar.visibleProperty());
         //Take Database Backup
         DBBackupService.createDBDump();
-        PDFUtils.licenseExpiryAlert(null);
+        PDFUtils.licenseExpiryAlert();
     }
    
     @FXML
@@ -307,7 +308,7 @@ public class HomeController {
 
     @FXML
     void onDataBackupMailSettingsCommand(ActionEvent event) {
-
+    	addTab("BackupMailSetting", "Data Backup Mail Settings");
     }
     
     @FXML
@@ -521,8 +522,8 @@ public class HomeController {
         try {
             rootPane = loader.load();
         } catch (IOException e) {
-            logger.logp(Level.SEVERE, HomeController.class.getName(),
-                    "addTab", "Error in loading the view file " + fxmlFileName, e);
+        	e.printStackTrace();
+            logger.error("HomeController addTab Error in loading the view file :" + fxmlFileName, e);
             Utility.beep();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Occurred");

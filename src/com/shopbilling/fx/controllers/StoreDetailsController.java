@@ -1,7 +1,8 @@
 package com.shopbilling.fx.controllers;
 
 import java.util.Optional;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 import com.shopbilling.dto.MyStoreDetails;
 import com.shopbilling.fx.main.Global;
@@ -31,8 +32,7 @@ import javafx.stage.Stage;
  */
 public class StoreDetailsController implements TabContent    
 {
-      private static final Logger logger = 
-            Logger.getLogger(StoreDetailsController.class.getName());
+      private static final Logger logger = Logger.getLogger(StoreDetailsController.class);
 
     public Stage MainWindow = null;
     
@@ -77,6 +77,8 @@ public class StoreDetailsController implements TabContent
 
     @FXML
     private Button btnClose;
+    
+    private BooleanProperty isDirty = new SimpleBooleanProperty(false);
 
     @FXML
     void onSaveCommand(ActionEvent event) {
@@ -99,9 +101,11 @@ public class StoreDetailsController implements TabContent
             if (buttonType == ButtonType.CANCEL) {
                 return; // no need to take any further action
             } else if (buttonType == ButtonType.YES) {
-                if (!saveData()) {
-                    return;
-                }
+            	 if (! validateInput()) {
+	            		return;
+	                }else {
+	                	saveData();
+	                }
             } 
         }
         
@@ -109,9 +113,6 @@ public class StoreDetailsController implements TabContent
                
     }
    
-   private BooleanProperty isDirty = new SimpleBooleanProperty(false);
-   
-    
     /**
      * Initializes the controller class.
      */
@@ -159,7 +160,11 @@ public class StoreDetailsController implements TabContent
             }
 
             if (response == ButtonType.YES) {
-                return saveData();
+            	if (! validateInput()) {
+            		return false;
+                }else {
+                	saveData();
+                }
             }
 
         }
@@ -254,6 +259,7 @@ public class StoreDetailsController implements TabContent
                     "Error in Fetching Data", message, MainWindow);
             Utility.beep();
             alert.showAndWait();
+            logger.error("StoreDetailsController loadData -->", e);
             return false;
         }
         

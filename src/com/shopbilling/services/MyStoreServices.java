@@ -51,7 +51,7 @@ public class MyStoreServices {
 			rs.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.error("getMyStoreDetails --> "+e);
+			logger.error("getMyStoreDetails --> ",e);
 		} finally {
 			PDFUtils.closeConnectionAndStatment(conn, stmt);
 		}
@@ -104,7 +104,7 @@ public class MyStoreServices {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.error("updateStoreDetails --> "+e);
+			logger.error("updateStoreDetails --> ",e);
 		} finally {
 			PDFUtils.closeConnectionAndStatment(conn, stmt);
 		}
