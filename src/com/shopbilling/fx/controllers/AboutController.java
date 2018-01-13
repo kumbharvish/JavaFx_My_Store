@@ -7,6 +7,7 @@ package com.shopbilling.fx.controllers;
 
 import com.shopbilling.utils.TabContent;
 
+import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -100,4 +101,28 @@ public class AboutController implements TabContent {
         final Tab currentTab = tabPane.getSelectionModel().getSelectedItem();
         tabPane.getTabs().remove(currentTab);
     }
+
+	@Override
+	public boolean saveData() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void invalidated(Observable observable) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void closeTab() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean validateInput() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

@@ -97,7 +97,7 @@ public class StoreDetailsController implements TabContent
     private void onCloseCommand(ActionEvent event) {
         
        if (isDirty.get()) {
-            ButtonType buttonType = shouldSaveUnsavedData();
+            ButtonType buttonType = PDFUtils.shouldSaveUnsavedData(MainWindow);
             if (buttonType == ButtonType.CANCEL) {
                 return; // no need to take any further action
             } else if (buttonType == ButtonType.YES) {
@@ -139,12 +139,13 @@ public class StoreDetailsController implements TabContent
     	
     	btnSave.disableProperty().bind(isDirty.not());
     }  
-    
+    @Override
     public void invalidated(Observable observable) {
         isDirty.set(true);
     }
     
-    private void closeTab() {
+    @Override
+    public void closeTab() {
         Tab tab = tabPane.selectionModelProperty().get()
                 .selectedItemProperty().get();
         tabPane.getTabs().remove(tab); //close the current tab
@@ -154,7 +155,7 @@ public class StoreDetailsController implements TabContent
     public boolean shouldClose() {
      
         if (isDirty.get()) {
-            ButtonType response = shouldSaveUnsavedData();
+            ButtonType response = PDFUtils.shouldSaveUnsavedData(MainWindow);
             if (response == ButtonType.CANCEL) {
                 return false;
             }
@@ -172,7 +173,8 @@ public class StoreDetailsController implements TabContent
         return true;
     }
     
-    private boolean saveData() {
+    @Override
+    public boolean saveData() {
         
     	MyStoreDetails myStoreDetails = new MyStoreDetails();
 		myStoreDetails.setMyStoreId(storeId);
@@ -212,7 +214,8 @@ public class StoreDetailsController implements TabContent
         txtStoreName.requestFocus();
     }
     
-    private boolean validateInput() {
+    @Override
+    public boolean validateInput() {
         boolean valid = true;
         
         int nameLength = txtStoreName.getText().trim().length();
@@ -298,23 +301,4 @@ public class StoreDetailsController implements TabContent
         this.tabPane = pane;
     }
     
-     private ButtonType shouldSaveUnsavedData() {
-            
-        final String promptMessage = "The Store Details data is not saved.\n"
-                   + "Save the data before closing the tab?";
-           Alert alert = new Alert(Alert.AlertType.CONFIRMATION, promptMessage,
-            ButtonType.YES, ButtonType.NO, ButtonType.CANCEL );
-           alert.setHeaderText("Unsaved Store Details. Save now?");
-           alert.setTitle("Unsaved Store Details");
-           alert.initOwner(MainWindow);
-            Global.styleAlertDialog(alert);
-
-           Optional<ButtonType> result = alert.showAndWait();
-           if (! result.isPresent()) {
-               return ButtonType.CANCEL;
-           }
-
-           return result.get();
-    }
-     
 }

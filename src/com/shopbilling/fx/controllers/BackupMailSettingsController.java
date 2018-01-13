@@ -85,7 +85,7 @@ public class BackupMailSettingsController implements TabContent {
     @FXML
     void onCloseCommand(ActionEvent event) {
     	 if (isDirty.get()) {
-             ButtonType buttonType = shouldSaveUnsavedData();
+             ButtonType buttonType = PDFUtils.shouldSaveUnsavedData(MainWindow);
              if (buttonType == ButtonType.CANCEL) {
                  return; // no need to take any further action
              } else if (buttonType == ButtonType.YES) {
@@ -113,7 +113,8 @@ public class BackupMailSettingsController implements TabContent {
          }
     }
     
-    private boolean validateInput() {
+    @Override
+    public boolean validateInput() {
     	boolean valid = true;
         
         int fromMailIdLength = txtFromMailId.getText().trim().length();
@@ -213,39 +214,22 @@ public class BackupMailSettingsController implements TabContent {
     	 radioDisable.setToggleGroup(group);
     	 radioEnable.setToggleGroup(group);
      }  
-     
+     @Override
      public void invalidated(Observable observable) {
          isDirty.set(true);
      }
      
-     private void closeTab() {
+     @Override
+     public void closeTab() {
          Tab tab = tabPane.selectionModelProperty().get()
                  .selectedItemProperty().get();
          tabPane.getTabs().remove(tab); //close the current tab
      }
-     private ButtonType shouldSaveUnsavedData() {
-            
-        final String promptMessage = "The Data Backup Mail Settings are not saved.\n"
-                   + "Save before closing the tab?";
-           Alert alert = new Alert(Alert.AlertType.CONFIRMATION, promptMessage,
-            ButtonType.YES, ButtonType.NO, ButtonType.CANCEL );
-           alert.setHeaderText("Unsaved Details. Save now?");
-           alert.setTitle("Unsaved Details");
-           alert.initOwner(MainWindow);
-            Global.styleAlertDialog(alert);
-
-           Optional<ButtonType> result = alert.showAndWait();
-           if (! result.isPresent()) {
-               return ButtonType.CANCEL;
-           }
-
-           return result.get();
-    }
 
 	@Override
 	public boolean shouldClose() {
 		  if (isDirty.get()) {
-	            ButtonType response = shouldSaveUnsavedData();
+	            ButtonType response = PDFUtils.shouldSaveUnsavedData(MainWindow);
 	            if (response == ButtonType.CANCEL) {
 	                return false;
 	            }
@@ -264,7 +248,8 @@ public class BackupMailSettingsController implements TabContent {
 	        return true;
 	}
 
-	private boolean saveData() {
+	@Override
+	public boolean saveData() {
 		MailConfigDTO mail = new MailConfigDTO();
 		mail.setMailFrom(txtFromMailId.getText());
 		mail.setPassword(txtPassword.getText());

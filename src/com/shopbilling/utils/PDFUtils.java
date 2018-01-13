@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -42,6 +43,7 @@ import com.shopbilling.properties.AppProperties;
 import com.shopbilling.services.BillingServices;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
@@ -419,5 +421,24 @@ public class PDFUtils {
 			logger.error("licenseExpiryAlert :",e);
 		}
 	}
+	
+	public static ButtonType shouldSaveUnsavedData(Stage stage) {
+        
+        final String promptMessage = "The details are not saved.\n"
+                   + "Save the data before closing the tab?";
+           Alert alert = new Alert(Alert.AlertType.CONFIRMATION, promptMessage,
+            ButtonType.YES, ButtonType.NO, ButtonType.CANCEL );
+           alert.setHeaderText("Unsaved Details. Save now?");
+           alert.setTitle("Unsaved Details");
+           alert.initOwner(stage);
+            Global.styleAlertDialog(alert);
+
+           Optional<ButtonType> result = alert.showAndWait();
+           if (! result.isPresent()) {
+               return ButtonType.CANCEL;
+           }
+
+           return result.get();
+    }
 	
 }
