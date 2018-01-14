@@ -752,7 +752,7 @@ public class MainWindow extends JFrame{
 		btnDataBackup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Data Backup Successfully Started !", "Data Backup", JOptionPane.INFORMATION_MESSAGE);
-				DBBackupService.createDBDumpSendOnMail();
+				DBBackupService.createDBDumpSendOnMail(null);
 			}
 		});
 		

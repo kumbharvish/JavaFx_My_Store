@@ -10,12 +10,19 @@ import java.util.List;
 
 import javax.swing.JComboBox;
 
+import org.apache.log4j.Logger;
+
 import com.shopbilling.dto.Expense;
 import com.shopbilling.dto.ExpenseType;
 import com.shopbilling.dto.StatusDTO;
+import com.shopbilling.fx.controllers.ExpenseController;
 import com.shopbilling.utils.PDFUtils;
 
+import javafx.scene.control.ComboBox;
+
 public class ExpensesServices {
+	
+	private static final Logger logger = Logger.getLogger(ExpensesServices.class);
 
 	private static final String GET_EXPENSES_DETAILS = "SELECT * FROM EXPENSE_DETAILS WHERE DATE(DATE) BETWEEN ? AND ? ";
 	
@@ -76,6 +83,7 @@ public class ExpensesServices {
 			rs.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.error("ExpenseServices getExpenses--> ",e);
 		} finally {
 			PDFUtils.closeConnectionAndStatment(conn, stmt);
 		}
@@ -104,6 +112,7 @@ public class ExpensesServices {
 			e.printStackTrace();
 			status.setException(e.getMessage());
 			status.setStatusCode(-1);
+			logger.error("ExpenseServices addExpense--> ",e);
 		} finally {
 			PDFUtils.closeConnectionAndStatment(conn, stmt);
 		}
@@ -125,6 +134,7 @@ public class ExpensesServices {
 				}
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.error("ExpenseServices deleteExpense--> ",e);
 		} finally {
 			PDFUtils.closeConnectionAndStatment(conn, stmt);
 		}
@@ -154,6 +164,7 @@ public class ExpensesServices {
 			e.printStackTrace();
 			status.setException(e.getMessage());
 			status.setStatusCode(-1);
+			logger.error("ExpenseServices updateExpense--> ",e);
 		} finally {
 			PDFUtils.closeConnectionAndStatment(conn, stmt);
 		}
@@ -181,6 +192,7 @@ public class ExpensesServices {
 			rs.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.error("ExpenseServices getExpenseDetails--> ",e);
 		} finally {
 			PDFUtils.closeConnectionAndStatment(conn, stmt);
 		}
@@ -209,6 +221,7 @@ public class ExpensesServices {
 				rs.close();
 			} catch (Exception e) {
 				e.printStackTrace();
+				logger.error("ExpenseServices getExpenseTypes--> ",e);
 			} finally {
 				PDFUtils.closeConnectionAndStatment(conn, stmt);
 			}
@@ -219,6 +232,13 @@ public class ExpensesServices {
 		public static void populateDropdown(JComboBox<String> combobox){
 			for(ExpenseType s : getExpenseTypes()){
 				combobox.addItem(s.getName());
+			}
+		}
+		//Java FX
+		public static void populateDropdown(ComboBox<String> combobox){
+			combobox.getItems().add("-- Select Category --");
+			for(ExpenseType s : getExpenseTypes()){
+				combobox.getItems().add(s.getName());
 			}
 		}
 }

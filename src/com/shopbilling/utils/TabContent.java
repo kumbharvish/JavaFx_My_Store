@@ -20,6 +20,7 @@ public interface TabContent {
     public void setMainWindow(Stage stage);
     public void setTabPane(TabPane tabPane);
     //Comman Methods
+    public void initialize();
     public boolean saveData();
     public void invalidated(Observable observable);
     public void closeTab();

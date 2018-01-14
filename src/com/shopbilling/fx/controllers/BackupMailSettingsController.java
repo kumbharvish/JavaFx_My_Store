@@ -1,12 +1,9 @@
 package com.shopbilling.fx.controllers;
 
-import java.util.Optional;
-
 import org.apache.log4j.Logger;
 
 import com.shopbilling.dto.MailConfigDTO;
 import com.shopbilling.dto.StatusDTO;
-import com.shopbilling.fx.main.Global;
 import com.shopbilling.utils.MailConfigurationServices;
 import com.shopbilling.utils.PDFUtils;
 import com.shopbilling.utils.TabContent;

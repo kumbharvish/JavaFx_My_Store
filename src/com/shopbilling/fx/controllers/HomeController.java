@@ -313,7 +313,7 @@ public class HomeController {
     
     @FXML
     void onDataBackupCommand(ActionEvent event) {
-
+    	DBBackupService.createDBDumpSendOnMail(MainWindow);
     }
 
     @FXML
@@ -324,7 +324,7 @@ public class HomeController {
 
     @FXML
     void onExpenseCommand(ActionEvent event) {
-
+    	addTab("Expense", "Expense");
     }
 
     @FXML

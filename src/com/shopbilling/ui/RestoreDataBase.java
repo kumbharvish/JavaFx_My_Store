@@ -88,7 +88,7 @@ public class RestoreDataBase extends JFrame {
 		btnRestore.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(PDFUtils.isMandatoryEntered(textField)){
-					DBBackupService.importDBDump(textField.getText());
+					//DBBackupService.importDBDump(textField.getText());
 				}else{
 					JOptionPane.showMessageDialog(null, "Please choose Backup file!", "Warning", JOptionPane.WARNING_MESSAGE);
 				}
