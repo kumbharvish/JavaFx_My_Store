@@ -380,7 +380,7 @@ public class HomeController {
 
     @FXML
     void onProductCategoriesCommand(ActionEvent event) {
-
+    	addTab("ProductCategory", "Product Categories");
     }
 
     @FXML
