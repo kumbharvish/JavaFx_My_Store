@@ -2,19 +2,28 @@ package com.shopbilling.dto;
 
 import java.util.Comparator;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class ProductCategory {
 
 	private int categoryCode;
 	
-	private String categoryName;
+	private StringProperty categoryName; 
 	
-	private String categoryDescription;
+	private StringProperty categoryDescription; 
 	
 	private double comission;
 	
 	private int categoryStockQty;
 	
 	private double categoryStockAmount;
+	
+	//Default Constructor
+	public ProductCategory() {
+		categoryName = new SimpleStringProperty(""); 
+		categoryDescription = new SimpleStringProperty(""); 
+	}
 
 	public int getCategoryCode() {
 		return categoryCode;
@@ -25,21 +34,28 @@ public class ProductCategory {
 	}
 
 	public String getCategoryName() {
-		return categoryName;
+		return categoryName.get();
 	}
 
 	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
+		this.categoryName.set(categoryName);
 	}
 
 	public String getCategoryDescription() {
-		return categoryDescription;
+		return categoryDescription.get();
 	}
 
 	public void setCategoryDescription(String categoryDescription) {
-		this.categoryDescription = categoryDescription;
+		this.categoryDescription.set(categoryDescription);
 	}
-
+	//Property Methods
+	public StringProperty categoryDescProperty() {
+        return categoryDescription;
+    }
+	public StringProperty categoryNameProperty() {
+        return categoryName;
+    }
+	
 	public double getComission() {
 		return comission;
 	}

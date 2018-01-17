@@ -1,5 +1,8 @@
 package com.shopbilling.fx.controllers;
+import java.util.List;
+
 import com.shopbilling.dto.ProductCategory;
+import com.shopbilling.services.ProductCategoryServices;
 import com.shopbilling.utils.PDFUtils;
 import com.shopbilling.utils.TabContent;
 import com.shopbilling.utils.Utility;
@@ -7,12 +10,15 @@ import com.shopbilling.utils.Utility;
 import javafx.beans.Observable;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -47,6 +53,15 @@ public class ProductCategoryController implements TabContent{
 
     @FXML
     private TableView<ProductCategory> tableView;
+    
+    @FXML
+    private TableColumn<ProductCategory, String> tcCategoryName;
+
+    @FXML
+    private TableColumn<ProductCategory, String> tcCategoryDesc;
+    
+    private ObservableList<ProductCategory> productCategoryTableData = FXCollections.observableArrayList();
+
 
     private BooleanProperty isDirty = new SimpleBooleanProperty(false);
     
@@ -79,8 +94,10 @@ public class ProductCategoryController implements TabContent{
 
 	@Override
 	public boolean loadData() {
-		// TODO Auto-generated method stub
-		return true;
+		 List<ProductCategory> list = ProductCategoryServices.getAllCategories();
+		 productCategoryTableData.addAll(list);
+	     tableView.setItems(productCategoryTableData);
+	     return true;
 	}
 
 	@Override
@@ -98,6 +115,9 @@ public class ProductCategoryController implements TabContent{
 		txtCategoryNameErrorMsg.managedProperty().bind(txtCategoryNameErrorMsg.visibleProperty());	
 		txtCategoryNameErrorMsg.visibleProperty()
 	     .bind(txtCategoryNameErrorMsg.textProperty().length().greaterThanOrEqualTo(1));
+		
+		tcCategoryName.setCellValueFactory(cellData -> cellData.getValue().categoryNameProperty());
+        tcCategoryDesc.setCellValueFactory(cellData -> cellData.getValue().categoryDescProperty());
 	}
 
 	@Override

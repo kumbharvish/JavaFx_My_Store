@@ -70,8 +70,8 @@
          <center>
             <TableView fx:id="tableView" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn prefWidth="170.0" text="Category Name" />
-                <TableColumn prefWidth="196.0" text="Category Description" />
+                <TableColumn fx:id="tcCategoryName" prefWidth="170.0" text="Category Name" />
+                <TableColumn fx:id="tcCategoryDesc" prefWidth="196.0" text="Category Description" />
               </columns>
                <BorderPane.margin>
                   <Insets bottom="20.0" top="20.0" />
